@@ -6,7 +6,7 @@
 /*   By: mvolkman <mvolkman@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:06 by mvolkman          #+#    #+#             */
-/*   Updated: 2024/05/06 16:33:58 by mvolkman         ###   ########.fr       */
+/*   Updated: 2024/05/06 17:22:05 by mvolkman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,13 @@ int	ft_atoi(const char *str)
 // 	printf("Routine running...");
 // }
 
+
+void* routine()
+{
+	printf("Routine..\n");
+	return NULL;
+}
+
 void	instructions()
 {
 	printf("Incorrect amount of arguments!\n");
@@ -162,6 +169,18 @@ void parse_input_data(t_data *data, int ac, char **av)
 		data->num_of_meals_required = ft_atoi(av[5]);
 	}
 }
+
+void initialize_data(t_data *data)
+{
+	int i = 0;
+	data->tid = malloc(data->num_of_philos * sizeof(pthread_t));
+	while (i < data->num_of_philos)
+	{
+		pthread_create(&data->tid[i], NULL, routine, NULL);
+		i++;
+	}
+}
+
 int	main(int ac, char **av)
 {
 
@@ -176,6 +195,7 @@ int	main(int ac, char **av)
 	else
 	{
 		parse_input_data(&data, ac, av);
+		initialize_data(&data);
 
 	}
 	printf("Number of Philosophers: %d\n", data.num_of_philos);
@@ -183,6 +203,16 @@ int	main(int ac, char **av)
 	printf("Time to Eat: %d milliseconds\n", data.time_to_eat);
 	printf("Time to Sleep: %d milliseconds\n", data.time_to_sleep);
 	printf("Number of Times Each Philosopher Must Eat: %d\n", data.num_of_meals_required);
+
+	int i = 0;
+	while (i < data.num_of_philos)
+	{
+		pthread_join(data.tid[i], NULL);
+		i++;
+	}
+
+	free(data.tid);
+
 
 	return (0);
 }

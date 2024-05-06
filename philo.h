@@ -6,7 +6,7 @@
 /*   By: mvolkman <mvolkman@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 12:01:13 by mvolkman          #+#    #+#             */
-/*   Updated: 2024/05/06 13:36:00 by mvolkman         ###   ########.fr       */
+/*   Updated: 2024/05/06 17:21:22 by mvolkman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <unistd.h> // for sleep function
 #include <stdint.h>  // For uint64_t
 #include <pthread.h> // fpt threads
+#include <stdlib.h>  // Include for malloc and free
 
 typedef struct s_data
 {
@@ -26,3 +27,9 @@ typedef struct s_data
 	int			num_of_meals_required;
 
 }	t_data;
+
+typedef struct s_philo
+{
+	int id;
+	t_data *data;
+}	t_philo;
