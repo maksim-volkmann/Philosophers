@@ -6,40 +6,13 @@
 /*   By: mvolkman <mvolkman@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:06 by mvolkman          #+#    #+#             */
-/*   Updated: 2024/05/06 17:22:05 by mvolkman         ###   ########.fr       */
+/*   Updated: 2024/05/07 13:40:41 by mvolkman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+// #include "philo.h"
 
 
-int	ft_atoi(const char *str)
-{
-	int	i;
-	int	sign;
-	int	result;
-
-	i = 0;
-	sign = 1;
-	result = 0;
-	while ((str[i] == ' ') || (str[i] == '\t') || (str[i] == '\n')
-		|| (str[i] == '\v') || (str[i] == '\f') || (str[i] == '\r'))
-		i++;
-	if (str[i] == '-')
-	{
-		sign = -1;
-		i++;
-	}
-	else if (str[i] == '+')
-		i++;
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		result = result * 10;
-		result = result + (str[i] - '0');
-		i++;
-	}
-	return (sign * result);
-}
 
 // uint64_t	get_time(void)
 // {
@@ -136,6 +109,86 @@ int	ft_atoi(const char *str)
 // }
 
 
+
+#include <stdio.h>
+#include <sys/time.h>
+#include <unistd.h> // for sleep function
+#include <stdint.h>  // For uint64_t
+#include <pthread.h> // fpt threads
+#include <stdlib.h>  // Include for malloc and free
+
+struct	s_data;
+
+typedef struct s_philo
+{
+	struct s_data	*data;
+	pthread_t		t1;
+	int				id;
+	int				eat_cont;
+	int				status;
+	int				eating;
+	uint64_t		time_left_to_live;
+	pthread_mutex_t	lock;
+	pthread_mutex_t	*r_fork;
+	pthread_mutex_t	*l_fork;
+}	t_philo;
+
+typedef struct s_data
+{
+	pthread_t		*tid;
+	int				num_of_philos;
+	int				num_of_meals_required;
+	int				dead;
+	int				finished;
+	t_philo			*philos;
+	u_int64_t		time_to_die;
+	u_int64_t		time_to_eat;
+	u_int64_t		time_to_sleep;
+	u_int64_t		start_time;
+	pthread_mutex_t	*forks;
+	pthread_mutex_t	lock;
+	pthread_mutex_t	write;
+}	t_data;
+
+
+int	ft_atoi(const char *str)
+{
+	int	i;
+	int	sign;
+	int	result;
+
+	i = 0;
+	sign = 1;
+	result = 0;
+	while ((str[i] == ' ') || (str[i] == '\t') || (str[i] == '\n')
+		|| (str[i] == '\v') || (str[i] == '\f') || (str[i] == '\r'))
+		i++;
+	if (str[i] == '-')
+	{
+		sign = -1;
+		i++;
+	}
+	else if (str[i] == '+')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		result = result * 10;
+		result = result + (str[i] - '0');
+		i++;
+	}
+	return (sign * result);
+}
+
+uint64_t	get_time(void)
+{
+	struct timeval	tv;
+
+	if (gettimeofday(&tv, NULL))
+		return (0);
+	return ((tv.tv_sec * (uint64_t)1000) + (tv.tv_usec / 1000));
+}
+
+
 void* routine()
 {
 	printf("Routine..\n");
@@ -172,11 +225,18 @@ void parse_input_data(t_data *data, int ac, char **av)
 
 void initialize_data(t_data *data)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	data->tid = malloc(data->num_of_philos * sizeof(pthread_t));
+	data->forks = malloc(data->num_of_philos * sizeof(pthread_mutex_t));
 	while (i < data->num_of_philos)
 	{
 		pthread_create(&data->tid[i], NULL, routine, NULL);
+		i++;
+	}
+	while (i < data->num_of_philos) {
+		pthread_mutex_init(&data->forks[i], NULL);
 		i++;
 	}
 }
