@@ -6,7 +6,7 @@
 /*   By: mvolkman <mvolkman@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:06 by mvolkman          #+#    #+#             */
-/*   Updated: 2024/05/09 12:22:40 by mvolkman         ###   ########.fr       */
+/*   Updated: 2024/05/09 14:24:52 by mvolkman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,6 +201,7 @@ void	instructions()
 	printf("You have to provide: ");
 	printf("number_of_philosophers time_to_die time_to_eat time_to_sleep ");
 	printf("number_of_times_each_philosopher_must_eat(optional).\n");
+	exit(EXIT_FAILURE);
 }
 
 void	initialize(t_data *data)
@@ -233,16 +234,22 @@ void initialize_data(t_data *data)
 	i = 0;
 	data->tid = malloc(data->num_of_philos * sizeof(pthread_t));
 	data->forks = malloc(data->num_of_philos * sizeof(pthread_mutex_t));
-	while (i < data->num_of_philos)
-	{
-		pthread_create(&data->tid[i], NULL, routine, NULL);
-		i++;
-	}
+
 	while (i < data->num_of_philos)
 	{
 		pthread_mutex_init(&data->forks[i], NULL);
 		i++;
 	}
+
+	i = 0;
+
+	while (i < data->num_of_philos)
+	{
+		pthread_create(&data->tid[i], NULL, routine, NULL);
+		i++;
+	}
+
+
 }
 
 int	is_numeric(char *str)
