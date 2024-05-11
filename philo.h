@@ -6,7 +6,7 @@
 /*   By: mvolkman <mvolkman@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 12:01:13 by mvolkman          #+#    #+#             */
-/*   Updated: 2024/05/11 16:47:13 by mvolkman         ###   ########.fr       */
+/*   Updated: 2024/05/11 16:48:51 by mvolkman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,11 @@ typedef struct s_data
 	int			number_of_meals;
 }	t_data;
 
+// argument validator
+bool	validate_num_of_philos(int num);
+bool	validate_time_to_die(uint64_t num);
+bool	validate_time_to_eat(uint64_t num);
+bool	validate_time_to_sleep(uint64_t num);
+bool	validate_number_of_meals(uint64_t num);
 
 #endif

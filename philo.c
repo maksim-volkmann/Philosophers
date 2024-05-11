@@ -6,63 +6,11 @@
 /*   By: mvolkman <mvolkman@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:06 by mvolkman          #+#    #+#             */
-/*   Updated: 2024/05/11 16:46:53 by mvolkman         ###   ########.fr       */
+/*   Updated: 2024/05/11 16:58:06 by mvolkman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-bool	validate_num_of_philos(int num)
-{
-	if (num <= 0 || num > 200)
-	{
-		printf("Error: Number of philosophers must be between 1 and 200.\n");
-		return (false);
-	}
-		return (true);
-}
-
-bool	validate_time_to_die(uint64_t num)
-{
-	if(num <= 0)
-	{
-		printf("Time to die must be more than 0\n");
-		return (false);
-	}
-	return (true);
-}
-
-bool	validate_time_to_eat(uint64_t num)
-{
-	if(num <= 0)
-	{
-		printf("Time to eat must be more than 0\n");
-		return (false);
-	}
-	return (true);
-}
-
-bool	validate_time_to_sleep(uint64_t num)
-{
-	if(num <= 0)
-	{
-		printf("Time to sleep must be more than 0\n");
-		return (false);
-	}
-	return (true);
-}
-
-bool	validate_number_of_meals(uint64_t num)
-{
-	if(num <= 0)
-	{
-		printf("Numbers of meals must be more than 0.\n");
-		printf("This argument is optional.\n");
-		return (false);
-	}
-	return (true);
-}
-
 
 int	ft_atoi(char *str)
 {
@@ -141,7 +89,6 @@ int pre_check(int ac, char **av)
 
 int	init_values(int ac, char **av, t_data *data)
 {
-
 	data->numb_of_philos = ft_atoi(av[1]);
 	if (!validate_num_of_philos(data->numb_of_philos))
 		return (1);
