@@ -6,7 +6,7 @@
 #    By: mvolkman <mvolkman@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 10:52:21 by mvolkman          #+#    #+#              #
-#    Updated: 2024/05/09 10:54:03 by mvolkman         ###   ########.fr        #
+#    Updated: 2024/05/11 17:08:21 by mvolkman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ CFLAGS = -Wall -Wextra -Werror -g
 
 SRC = \
 	philo.c \
+	range_validator.c \
 
 OBJ = $(SRC:.c=.o)
 
