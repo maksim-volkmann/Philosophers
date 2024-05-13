@@ -6,12 +6,12 @@
 #    By: mvolkman <mvolkman@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 10:52:21 by mvolkman          #+#    #+#              #
-#    Updated: 2024/05/11 17:25:03 by mvolkman         ###   ########.fr        #
+#    Updated: 2024/05/13 13:15:54 by mvolkman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS =
 
 SRC = \
 	philo.c \

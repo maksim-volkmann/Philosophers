@@ -6,11 +6,62 @@
 /*   By: mvolkman <mvolkman@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:06 by mvolkman          #+#    #+#             */
-/*   Updated: 2024/05/13 11:47:18 by mvolkman         ###   ########.fr       */
+/*   Updated: 2024/05/13 14:58:52 by mvolkman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+uint64_t	get_time(void)
+{
+	struct timeval	tv;
+
+	if (gettimeofday(&tv, NULL))
+		return (0);
+	// printf("FULL: %llu\n", (tv.tv_sec * (uint64_t)1000) + (tv.tv_usec / 1000));
+	// printf("FIRST HALF: %llu\n", tv.tv_sec * (uint64_t)1000);
+	// printf("LEFT OVER: %d\n", tv.tv_usec / 1000);
+	return ((tv.tv_sec * (uint64_t)1000) + (tv.tv_usec / 1000));
+}
+
+void	*routine(void *arg)
+{
+	t_philo	*philo = (t_philo *)arg;
+
+	usleep(10000);
+	int i = 0;
+	while(i < 5)
+	{
+		printf("Hello, this is philo: %d\n", philo->id);
+		i++;
+	}
+
+
+	return (NULL);
+}
+
+int	start_threads(t_data *data)
+{
+	int i;
+
+	i = -1;
+	printf("TIME: %llu\n", get_time());
+	while (++i < data->numb_of_philos)
+	{
+		if(pthread_create(&data->philos[i].thread_id, NULL, routine, &data->philos[i]) != 0)
+		{
+			return (1);
+		}
+
+	}
+	printf("\n");
+	printf("Philo created\n");
+	printf("\n");
+	// usleep(1000000);
+	return (0);
+}
+
+//--------------------------------------------------------------
 
 void	cleanup(t_data *data)
 {
@@ -93,7 +144,13 @@ int	main(int ac, char **av)
 		return (1);
 	if (dining_init(&data) != 0)
 		return (1);
+	if (start_threads(&data) != 0)
+		return (1);
 
+	//TODO: Move this to seperate function.
+	int i = -1;
+	while(++i < data.numb_of_philos)
+		pthread_join(data.philos[i].thread_id, NULL);
 
 	cleanup(&data);
 	return (0);
