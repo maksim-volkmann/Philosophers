@@ -6,7 +6,7 @@
 /*   By: mvolkman <mvolkman@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 12:01:13 by mvolkman          #+#    #+#             */
-/*   Updated: 2024/05/13 11:47:38 by mvolkman         ###   ########.fr       */
+/*   Updated: 2024/05/13 16:00:12 by mvolkman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,19 @@
 
 
 
-typedef struct s_data t_data;  // Forward declaration
+struct s_data;  // Forward declaration
 
 typedef struct s_philo
 {
 	int                 id;
 	int                 eat_count;
 	int                 is_eating;
+	struct s_data		*data;
 	uint64_t            last_meal_time;
 	pthread_t           thread_id;
 	pthread_mutex_t     *left_fork;
 	pthread_mutex_t     *right_fork;
+
 }	t_philo;
 
 // ./philo 5 450 200 200 1
@@ -73,6 +75,7 @@ typedef struct s_data
 	uint64_t		time_to_eat;
 	uint64_t		time_to_sleep;
 	int				number_of_meals;
+	u_int64_t		start_time;
 	pthread_mutex_t	*forks;
 	t_philo			*philos;
 	pthread_mutex_t	write;

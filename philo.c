@@ -6,7 +6,7 @@
 /*   By: mvolkman <mvolkman@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:06 by mvolkman          #+#    #+#             */
-/*   Updated: 2024/05/13 14:58:52 by mvolkman         ###   ########.fr       */
+/*   Updated: 2024/05/13 16:13:05 by mvolkman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,24 @@ void	*routine(void *arg)
 {
 	t_philo	*philo = (t_philo *)arg;
 
-	usleep(10000);
+	// The philosophers alternatively eat, think, or sleep.
+	//TODO: EAT \ SLEEP \ THINK function. Print correct messages:
+	// ◦ timestamp_in_ms X has taken a fork
+	// ◦ timestamp_in_ms X is eating
+	// ◦ timestamp_in_ms X is sleeping
+	// ◦ timestamp_in_ms X is thinking
+	// ◦ timestamp_in_ms X died
+
+	//1. EAT. Take forks (think about deadlock). simulate eating. drop forks.
+	//2. SLEEP. simulate sleep.
+	//3. THINK. not sure about this, have to wait until the forks are ready?
+	// usleep(10000);
 	int i = 0;
-	while(i < 5)
+	// printf("TIME in routine: %d\n", (get_time()) - (philo->data->start_time));
+	printf("TIME in routine: %llu\n", (get_time()) - philo->data->start_time);
+	printf("EATING: %llu\n", (get_time()) - philo->data->start_time + philo->data->time_to_eat);
+	// printf("Time in routine: %llu\n", philo->data);
+	while(i < 2)
 	{
 		printf("Hello, this is philo: %d\n", philo->id);
 		i++;
@@ -45,7 +60,8 @@ int	start_threads(t_data *data)
 	int i;
 
 	i = -1;
-	printf("TIME: %llu\n", get_time());
+	data->start_time = get_time();
+	printf("TIME: %llu\n", get_time() - (data->start_time));
 	while (++i < data->numb_of_philos)
 	{
 		if(pthread_create(&data->philos[i].thread_id, NULL, routine, &data->philos[i]) != 0)
@@ -54,6 +70,8 @@ int	start_threads(t_data *data)
 		}
 
 	}
+	// usleep(1000000);
+	printf("TIME AFTER: %llu\n", get_time() - (data->start_time));
 	printf("\n");
 	printf("Philo created\n");
 	printf("\n");
@@ -88,6 +106,7 @@ int	init_philos(t_data *data)
 		data->philos[i].id = i;
 		data->philos[i].eat_count = 0;
 		data->philos[i].is_eating = 0;
+		data->philos[i].data = data;
 		data->philos[i].last_meal_time = 0;
 		data->philos[i].thread_id = 0;
 		data->philos[i].left_fork = &data->forks[i];
