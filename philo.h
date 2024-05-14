@@ -6,7 +6,7 @@
 /*   By: mvolkman <mvolkman@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 12:01:13 by mvolkman          #+#    #+#             */
-/*   Updated: 2024/05/13 16:00:12 by mvolkman         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:19:20 by mvolkman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@
 
 struct s_data;  // Forward declaration
 
+
+
 typedef struct s_philo
 {
 	int                 id;
@@ -79,6 +81,9 @@ typedef struct s_data
 	pthread_mutex_t	*forks;
 	t_philo			*philos;
 	pthread_mutex_t	write;
+	bool			died;
+	pthread_t		monitor_thread;
+	pthread_mutex_t 	fork_mutex;
 }	t_data;
 
 // range validator
