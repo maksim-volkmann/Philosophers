@@ -6,7 +6,7 @@
 /*   By: mvolkman <mvolkman@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 12:01:13 by mvolkman          #+#    #+#             */
-/*   Updated: 2024/05/14 17:19:20 by mvolkman         ###   ########.fr       */
+/*   Updated: 2024/05/16 13:32:54 by mvolkman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,52 +24,20 @@
 #include <stdbool.h>
 #include <limits.h>
 
-
-// typedef struct s_philo
-// {
-// 	int				id;
-// 	int				is_eating;
-// 	uint64_t		last_meal_time;
-// 	uint64_t		limit_time_to_die;
-// 	pthread_t		thread_id;
-// 	struct s_data	*data;
-// 	pthread_mutex_t	mutex;
-// 	pthread_mutex_t	*left_fork;
-// 	pthread_mutex_t	*right_fork;
-// }	t_philo;
-
-// typedef struct s_data
-// {
-// 	int				num_philos;
-// 	uint64_t		time_to_die;
-// 	uint64_t		time_to_eat;
-// 	uint64_t		time_to_sleep;
-// 	int				all_ate;
-// 	pthread_mutex_t	write_lock;
-// 	pthread_mutex_t	*forks;
-// 	t_philo			*philos;
-// }	t_data;
-
-
-
 struct s_data;  // Forward declaration
-
-
 
 typedef struct s_philo
 {
-	int                 id;
-	int                 eat_count;
-	int                 is_eating;
-	struct s_data		*data;
-	uint64_t            last_meal_time;
-	pthread_t           thread_id;
-	pthread_mutex_t     *left_fork;
-	pthread_mutex_t     *right_fork;
-
+	int				id;
+	int 			eat_count;
+	uint64_t 		last_meal_time;
+	pthread_t 		thread_id;
+	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	*right_fork;
+	pthread_mutex_t	mutex_last_meal;
+	struct s_data	*data;
 }	t_philo;
 
-// ./philo 5 450 200 200 1
 typedef struct s_data
 {
 	int				numb_of_philos;
@@ -77,13 +45,15 @@ typedef struct s_data
 	uint64_t		time_to_eat;
 	uint64_t		time_to_sleep;
 	int				number_of_meals;
-	u_int64_t		start_time;
+	uint64_t		start_time;
 	pthread_mutex_t	*forks;
 	t_philo			*philos;
 	pthread_mutex_t	write;
 	bool			died;
+	bool			all_ate;
 	pthread_t		monitor_thread;
-	pthread_mutex_t 	fork_mutex;
+	pthread_t		waiter_thread;
+	pthread_mutex_t	all_ate_mutex;
 }	t_data;
 
 // range validator
