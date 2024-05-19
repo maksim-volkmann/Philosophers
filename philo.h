@@ -6,7 +6,7 @@
 /*   By: mvolkman <mvolkman@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 12:01:13 by mvolkman          #+#    #+#             */
-/*   Updated: 2024/05/16 13:32:54 by mvolkman         ###   ########.fr       */
+/*   Updated: 2024/05/19 12:21:21 by mvolkman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_philo
 	pthread_t 		thread_id;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
-	pthread_mutex_t	mutex_last_meal;
+	pthread_mutex_t	philo_lock;
 	struct s_data	*data;
 }	t_philo;
 
@@ -55,6 +55,10 @@ typedef struct s_data
 	pthread_t		waiter_thread;
 	pthread_mutex_t	all_ate_mutex;
 }	t_data;
+
+//time management
+uint64_t	get_time(void);
+void		simulate_action(uint64_t action_time);
 
 // range validator
 bool	validate_num_of_philos(int num);
