@@ -6,7 +6,7 @@
 /*   By: mvolkman <mvolkman@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 12:01:13 by mvolkman          #+#    #+#             */
-/*   Updated: 2024/05/19 12:21:21 by mvolkman         ###   ########.fr       */
+/*   Updated: 2024/05/19 12:27:20 by mvolkman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,16 @@ typedef struct s_data
 	pthread_t		waiter_thread;
 	pthread_mutex_t	all_ate_mutex;
 }	t_data;
+
+void	print_log(t_philo *philo, const char *message);
+void	single_philo(t_philo *philo);
+
+//routine
+bool	check_status(t_philo *philo);
+void	philo_eat(t_philo *philo);
+void	philo_sleep(t_philo *philo);
+void	philo_think(t_philo *philo);
+void	*routine(void *arg);
 
 //time management
 uint64_t	get_time(void);
