@@ -6,7 +6,7 @@
 /*   By: mvolkman <mvolkman@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 12:01:13 by mvolkman          #+#    #+#             */
-/*   Updated: 2024/05/21 12:41:52 by mvolkman         ###   ########.fr       */
+/*   Updated: 2024/05/21 15:48:59 by mvolkman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ void		cleanup(t_data *data);
 void		print_log(t_philo *philo, const char *message);
 bool		check_died_status(t_philo *philo);
 bool		check_all_ate_status(t_philo *philo);
+void		death_print(t_data *data, int id);
 
 // philo.c
 void		single_philo(t_philo *philo);

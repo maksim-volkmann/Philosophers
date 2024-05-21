@@ -6,7 +6,7 @@
 /*   By: mvolkman <mvolkman@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 11:46:05 by mvolkman          #+#    #+#             */
-/*   Updated: 2024/05/21 12:43:11 by mvolkman         ###   ########.fr       */
+/*   Updated: 2024/05/21 16:07:55 by mvolkman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,15 @@ void	*doctor(void *arg)
 			pthread_mutex_lock(&data->philos[i].mutex_last_meal);
 			if (get_time() - data->philos[i].last_meal_time > data->time_to_die)
 			{
-				print_log(&data->philos[i], "died");
 				set_died(data, true);
 				pthread_mutex_unlock(&data->philos[i].mutex_last_meal);
+				death_print(data, data->philos[i].id);
 				return (NULL);
 			}
 			pthread_mutex_unlock(&data->philos[i].mutex_last_meal);
 			i++;
 		}
-		usleep(1000);
+		usleep(100);
 	}
 	return (NULL);
 }
@@ -90,7 +90,8 @@ void	*waiter(void *arg)
 	{
 		if (check_all_philos_ate(data))
 			set_all_ate(data, true);
-		usleep(1000);
+		usleep(100);
 	}
 	return (NULL);
 }
+

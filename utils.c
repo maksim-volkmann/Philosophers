@@ -6,7 +6,7 @@
 /*   By: mvolkman <mvolkman@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 10:04:59 by mvolkman          #+#    #+#             */
-/*   Updated: 2024/05/21 12:44:04 by mvolkman         ###   ########.fr       */
+/*   Updated: 2024/05/21 15:49:37 by mvolkman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,13 @@ void	print_log(t_philo *philo, const char *message)
 		printf("%llu %d %s\n", get_time() - philo->data->start_time,
 			philo->id, message);
 	pthread_mutex_unlock(&philo->data->write);
+}
+
+void	death_print(t_data *data, int id)
+{
+	pthread_mutex_lock(&data->write);
+	printf("%llu %d %s\n", get_time() - data->start_time, id, "died");
+	pthread_mutex_unlock(&data->write);
 }
 
 bool	check_died_status(t_philo *philo)
