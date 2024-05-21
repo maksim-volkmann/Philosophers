@@ -6,7 +6,7 @@
 #    By: mvolkman <mvolkman@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 10:52:21 by mvolkman          #+#    #+#              #
-#    Updated: 2024/05/20 15:16:26 by mvolkman         ###   ########.fr        #
+#    Updated: 2024/05/21 10:11:56 by mvolkman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,9 @@ SRC = \
 	range_validator.c \
 	init_values.c \
 	time_management.c \
-	routine.c
-
+	routine.c \
+	getters_setters.c \
+	utils.c \
 
 OBJ = $(SRC:.c=.o)
 

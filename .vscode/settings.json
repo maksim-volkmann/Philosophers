@@ -1,6 +1,11 @@
 {
 	"files.associations": {
 		"time.h": "c",
-		"ratio": "cpp"
+		"ratio": "cpp",
+		"array": "c",
+		"iterator": "c",
+		"string": "c",
+		"string_view": "c",
+		"vector": "c"
 	}
 }

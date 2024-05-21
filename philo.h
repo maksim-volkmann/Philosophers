@@ -6,7 +6,7 @@
 /*   By: mvolkman <mvolkman@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 12:01:13 by mvolkman          #+#    #+#             */
-/*   Updated: 2024/05/21 09:53:41 by mvolkman         ###   ########.fr       */
+/*   Updated: 2024/05/21 10:37:39 by mvolkman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ typedef struct s_philo
 	int				eat_count;
 	uint64_t		last_meal_time;
 	pthread_t		thread_id;
-	pthread_mutex_t	*left_fork;
-	pthread_mutex_t	*right_fork;
+	pthread_mutex_t	*l_fork;
+	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	mutex_last_meal;
 	struct s_data	*data;
 }	t_philo;
@@ -67,9 +67,22 @@ void	single_philo(t_philo *philo);
 // void	philo_think(t_philo *philo);
 // void	*routine(void *arg);
 
+// utils
+void	print_log(t_philo *philo, const char *message);
+bool	check_died_status(t_philo *philo);
+bool	check_all_ate_status(t_philo *philo);
+
+//getters and setters
+bool	get_died(t_data *data);
+bool	get_all_ate(t_data *data);
+void	set_died(t_data *data, bool value);
+void	set_all_ate(t_data *data, bool value);
+
 // time management
 uint64_t	get_time(void);
 void		simulate_action(uint64_t action_time);
+
+
 
 // range validator
 bool	validate_num_of_philos(int num);
@@ -89,6 +102,23 @@ int		ft_atoi(char *str);
 void	additional_init(t_data *data);
 int		parse_init_values(int ac, char **av, t_data *data);
 
+//..................
+
+void	single_philo(t_philo *philo);
+void	pick_r_fork(t_philo *philo);
+void philo_eat(t_philo *philo);
+void philo_sleep(t_philo *philo);
+void philo_think(t_philo *philo, uint64_t time_to_think);
+void *routine(void *arg);
+void *doctor(void *arg);
+void *waiter(void *arg);
+void	cleanup(t_data *data);
+int	init_philos(t_data *data);
+int	init_forks(t_data *data);
+int dining_init(t_data *data);
+int start_threads(t_data *data);
+void join_threads(t_data *data);
+int main(int ac, char **av);
 
 #endif
 
