@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   argument_validator.c                               :+:      :+:    :+:   */
+/*   range_validator.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvolkman <mvolkman@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 16:45:46 by mvolkman          #+#    #+#             */
-/*   Updated: 2024/05/11 16:45:52 by mvolkman         ###   ########.fr       */
+/*   Updated: 2024/05/19 19:11:53 by mvolkman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ bool	validate_time_to_sleep(uint64_t num)
 	return (true);
 }
 
-bool	validate_number_of_meals(uint64_t num)
+bool	validate_number_of_meals(int num)
 {
 	if(num <= 0)
 	{

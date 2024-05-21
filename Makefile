@@ -6,12 +6,14 @@
 #    By: mvolkman <mvolkman@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 10:52:21 by mvolkman          #+#    #+#              #
-#    Updated: 2024/05/19 12:26:29 by mvolkman         ###   ########.fr        #
+#    Updated: 2024/05/20 15:16:26 by mvolkman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = cc
-CFLAGS =
+CC = cc -pthread
+CFLAGS = -Wall -Wextra -Werror -g
+
+# -fsanitize=thread
 
 SRC = \
 	philo.c \
