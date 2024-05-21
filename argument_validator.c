@@ -6,7 +6,7 @@
 /*   By: mvolkman <mvolkman@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 17:09:17 by mvolkman          #+#    #+#             */
-/*   Updated: 2024/05/11 17:12:41 by mvolkman         ###   ########.fr       */
+/*   Updated: 2024/05/21 12:22:48 by mvolkman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 bool	is_in_int_range(char *str)
 {
-	long result;
+	long	result;
 
 	result = 0;
-	while(*str)
+	while (*str)
 	{
 		result = result * 10 + (*str - '0');
-		if(result > INT_MAX)
+		if (result > INT_MAX)
 		{
 			printf("One or more numbers are too big!\n");
 			return (false);
@@ -34,7 +34,7 @@ bool	is_numeric(char *str)
 {
 	while(*str)
 	{
-		if(*str < '0' || *str > '9')
+		if (*str < '0' || *str > '9')
 		{
 			printf("Non numeric values detected!\n");
 			return (false);

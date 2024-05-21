@@ -6,7 +6,7 @@
 #    By: mvolkman <mvolkman@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 10:52:21 by mvolkman          #+#    #+#              #
-#    Updated: 2024/05/21 10:11:56 by mvolkman         ###   ########.fr        #
+#    Updated: 2024/05/21 12:21:50 by mvolkman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,17 @@ CFLAGS = -Wall -Wextra -Werror -g
 # -fsanitize=thread
 
 SRC = \
-	philo.c \
+	actions.c \
 	argument_validator.c \
-	range_validator.c \
-	init_values.c \
-	time_management.c \
-	routine.c \
+	create_dinner.c \
 	getters_setters.c \
+	init_items.c \
+	init_values.c \
+	philo.c \
+	range_validator.c \
+	routines.c \
+	threads.c \
+	time_management.c \
 	utils.c \
 
 OBJ = $(SRC:.c=.o)
