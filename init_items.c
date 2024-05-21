@@ -6,7 +6,7 @@
 /*   By: mvolkman <mvolkman@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 12:15:56 by mvolkman          #+#    #+#             */
-/*   Updated: 2024/05/21 12:16:08 by mvolkman         ###   ########.fr       */
+/*   Updated: 2024/05/21 12:25:33 by mvolkman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	init_philos(t_data *data)
 	}
 	return (0);
 }
-
 
 int	init_forks(t_data *data)
 {

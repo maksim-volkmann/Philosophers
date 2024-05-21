@@ -6,7 +6,7 @@
 /*   By: mvolkman <mvolkman@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 10:04:59 by mvolkman          #+#    #+#             */
-/*   Updated: 2024/05/21 12:18:14 by mvolkman         ###   ########.fr       */
+/*   Updated: 2024/05/21 12:44:04 by mvolkman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ bool	check_died_status(t_philo *philo)
 	result = get_died(philo->data);
 	return (result);
 }
-
 
 bool	check_all_ate_status(t_philo *philo)
 {

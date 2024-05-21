@@ -6,7 +6,7 @@
 /*   By: mvolkman <mvolkman@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 11:46:05 by mvolkman          #+#    #+#             */
-/*   Updated: 2024/05/21 11:46:23 by mvolkman         ###   ########.fr       */
+/*   Updated: 2024/05/21 12:43:11 by mvolkman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,12 @@ bool	check_all_philos_ate(t_data *data)
 		if (data->philos[i].eat_count < data->number_of_meals)
 		{
 			pthread_mutex_unlock(&data->philos[i].mutex_last_meal);
-			return false;
+			return (false);
 		}
 		pthread_mutex_unlock(&data->philos[i].mutex_last_meal);
 		i++;
 	}
-	return true;
+	return (true);
 }
 
 void	*waiter(void *arg)

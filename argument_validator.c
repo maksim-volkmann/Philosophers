@@ -6,7 +6,7 @@
 /*   By: mvolkman <mvolkman@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 17:09:17 by mvolkman          #+#    #+#             */
-/*   Updated: 2024/05/21 12:22:48 by mvolkman         ###   ########.fr       */
+/*   Updated: 2024/05/21 12:25:12 by mvolkman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ bool	is_in_int_range(char *str)
 
 bool	is_numeric(char *str)
 {
-	while(*str)
+	while (*str)
 	{
 		if (*str < '0' || *str > '9')
 		{
@@ -44,7 +44,7 @@ bool	is_numeric(char *str)
 	return (true);
 }
 
-void	instructions()
+void	instructions(void)
 {
 	printf("Incorrect amount of arguments!\n");
 	printf("You have to provide: ");
@@ -59,16 +59,16 @@ int	pre_check(int ac, char **av)
 	int	i;
 
 	i = 0;
-	if(ac != 5 && ac != 6)
+	if (ac != 5 && ac != 6)
 	{
 		instructions();
 		return (1);
 	}
-	while(++i < ac)
+	while (++i < ac)
 	{
-		if(!is_numeric(av[i]))
+		if (!is_numeric(av[i]))
 			return (1);
-		if(!is_in_int_range(av[i]))
+		if (!is_in_int_range(av[i]))
 			return (1);
 	}
 	return (0);

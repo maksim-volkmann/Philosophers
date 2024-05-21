@@ -6,7 +6,7 @@
 /*   By: mvolkman <mvolkman@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 17:19:02 by mvolkman          #+#    #+#             */
-/*   Updated: 2024/05/21 09:51:19 by mvolkman         ###   ########.fr       */
+/*   Updated: 2024/05/21 12:25:54 by mvolkman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_atoi(char *str)
 	return (result);
 }
 
-void additional_init(t_data *data)
+void	additional_init(t_data *data)
 {
 	data->start_time = 0;
 	data->forks = NULL;
@@ -50,7 +50,7 @@ int	parse_init_values(int ac, char **av, t_data *data)
 	data->time_to_sleep = ft_atoi(av[4]);
 	if (!validate_time_to_sleep(data->time_to_sleep))
 		return (1);
-	if(ac == 6)
+	if (ac == 6)
 	{
 		data->number_of_meals = ft_atoi(av[5]);
 		if (!validate_number_of_meals(data->number_of_meals))
