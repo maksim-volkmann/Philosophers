@@ -6,11 +6,11 @@
 #    By: mvolkman <mvolkman@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 10:52:21 by mvolkman          #+#    #+#              #
-#    Updated: 2024/05/22 18:22:13 by mvolkman         ###   ########.fr        #
+#    Updated: 2024/05/22 18:32:22 by mvolkman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = cc -pthread
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 SRC = \
