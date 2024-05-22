@@ -6,7 +6,7 @@
 /*   By: mvolkman <mvolkman@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 17:09:17 by mvolkman          #+#    #+#             */
-/*   Updated: 2024/05/22 10:36:15 by mvolkman         ###   ########.fr       */
+/*   Updated: 2024/05/22 18:36:36 by mvolkman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	instructions(void)
 }
 
 int	pre_check(int ac, char **av)
-
 {
 	int	i;
 
