@@ -6,7 +6,7 @@
 /*   By: mvolkman <mvolkman@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 12:01:13 by mvolkman          #+#    #+#             */
-/*   Updated: 2024/05/21 15:48:59 by mvolkman         ###   ########.fr       */
+/*   Updated: 2024/05/22 17:08:38 by mvolkman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,11 @@ typedef struct s_data
 	pthread_t		doctor_thread;
 	pthread_t		waiter_thread;
 }	t_data;
+
+// cleanup.c
+void	clean_last_meal(t_data *data);
+void	clean_forks(t_data *data);
+void		cleanup(t_data *data);
 
 // actions.c
 void		pick_r_fork(t_philo *philo);
@@ -112,7 +117,6 @@ uint64_t	get_time(void);
 void		simulate_action(uint64_t action_time);
 
 // utils.c
-void		cleanup(t_data *data);
 void		print_log(t_philo *philo, const char *message);
 bool		check_died_status(t_philo *philo);
 bool		check_all_ate_status(t_philo *philo);

@@ -6,7 +6,7 @@
 /*   By: mvolkman <mvolkman@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 10:24:03 by mvolkman          #+#    #+#             */
-/*   Updated: 2024/05/21 12:18:07 by mvolkman         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:50:38 by mvolkman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,15 @@ int	main(int ac, char **av)
 		return (1);
 	additional_init(&data);
 	if (dining_init(&data) != 0)
+	{
+		cleanup(&data);
 		return (1);
+	}
 	if (start_threads(&data) != 0)
+	{
+		cleanup(&data);
 		return (1);
+	}
 	join_threads(&data);
 	cleanup(&data);
 	return (0);

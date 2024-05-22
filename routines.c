@@ -6,7 +6,7 @@
 /*   By: mvolkman <mvolkman@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 11:46:05 by mvolkman          #+#    #+#             */
-/*   Updated: 2024/05/21 16:07:55 by mvolkman         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:28:51 by mvolkman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,14 @@ void	*routine(void *arg)
 {
 	t_philo		*philo;
 	uint64_t	time_to_think;
+	int			ttt_calc;
 
 	philo = (t_philo *)arg;
-	time_to_think = (philo->data->time_to_eat * 2) - philo->data->time_to_sleep;
+	ttt_calc = (philo->data->time_to_eat * 2) - philo->data->time_to_sleep;
+	if (ttt_calc < 0)
+		time_to_think = 0;
+	else
+		time_to_think = ttt_calc;
 	if (philo->data->numb_of_philos == 1)
 	{
 		single_philo(philo);
@@ -94,4 +99,3 @@ void	*waiter(void *arg)
 	}
 	return (NULL);
 }
-

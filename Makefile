@@ -6,13 +6,13 @@
 #    By: mvolkman <mvolkman@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/09 10:52:21 by mvolkman          #+#    #+#              #
-#    Updated: 2024/05/21 12:21:50 by mvolkman         ###   ########.fr        #
+#    Updated: 2024/05/22 17:02:37 by mvolkman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc -pthread
+# CFLAGS =
 CFLAGS = -Wall -Wextra -Werror -g
-
 # -fsanitize=thread
 
 SRC = \
@@ -28,6 +28,7 @@ SRC = \
 	threads.c \
 	time_management.c \
 	utils.c \
+	cleanup.c \
 
 OBJ = $(SRC:.c=.o)
 
