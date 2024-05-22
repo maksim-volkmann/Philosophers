@@ -6,7 +6,7 @@
 /*   By: mvolkman <mvolkman@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 11:46:05 by mvolkman          #+#    #+#             */
-/*   Updated: 2024/05/22 16:28:51 by mvolkman         ###   ########.fr       */
+/*   Updated: 2024/05/22 17:58:22 by mvolkman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	*routine(void *arg)
 	if (philo->data->numb_of_philos == 1)
 	{
 		single_philo(philo);
-		return (NULL);
+		return (0);
 	}
 	if (philo->id % 2 == 0)
 		usleep(10);
@@ -37,7 +37,7 @@ void	*routine(void *arg)
 		philo_sleep(philo);
 		philo_think(philo, time_to_think);
 	}
-	return (NULL);
+	return (0);
 }
 
 void	*doctor(void *arg)
@@ -57,14 +57,14 @@ void	*doctor(void *arg)
 				set_died(data, true);
 				pthread_mutex_unlock(&data->philos[i].mutex_last_meal);
 				death_print(data, data->philos[i].id);
-				return (NULL);
+				return (0);
 			}
 			pthread_mutex_unlock(&data->philos[i].mutex_last_meal);
 			i++;
 		}
 		usleep(100);
 	}
-	return (NULL);
+	return (0);
 }
 
 bool	check_all_philos_ate(t_data *data)
@@ -97,5 +97,5 @@ void	*waiter(void *arg)
 			set_all_ate(data, true);
 		usleep(100);
 	}
-	return (NULL);
+	return (0);
 }

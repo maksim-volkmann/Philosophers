@@ -6,7 +6,7 @@
 /*   By: mvolkman <mvolkman@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 17:00:54 by mvolkman          #+#    #+#             */
-/*   Updated: 2024/05/22 17:01:18 by mvolkman         ###   ########.fr       */
+/*   Updated: 2024/05/22 18:15:40 by mvolkman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	clean_forks(t_data *data)
 		data->forks = NULL;
 	}
 }
+
 void	cleanup(t_data *data)
 {
 	clean_last_meal(data);

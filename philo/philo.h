@@ -6,7 +6,7 @@
 /*   By: mvolkman <mvolkman@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 12:01:13 by mvolkman          #+#    #+#             */
-/*   Updated: 2024/05/22 17:11:55 by mvolkman         ###   ########.fr       */
+/*   Updated: 2024/05/22 18:23:03 by mvolkman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ typedef struct s_data
 }	t_data;
 
 // cleanup.c
-void	clean_last_meal(t_data *data);
-void	clean_forks(t_data *data);
+void		clean_last_meal(t_data *data);
+void		clean_forks(t_data *data);
 void		cleanup(t_data *data);
 
 // actions.c
@@ -127,6 +127,3 @@ void		single_philo(t_philo *philo);
 int			main(int ac, char **av);
 
 #endif
-
-// valgrind --tool=drd --fair-sched=yes ./philo 4 600 200 200 4
-// valgrind --tool=helgrind --fair-sched=yes ./philo 2 800 100 100 3
